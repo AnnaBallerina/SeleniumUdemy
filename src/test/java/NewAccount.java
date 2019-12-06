@@ -11,14 +11,14 @@ public class NewAccount {
         String password = "mspass";
         String country = "Germany";
         String browser = "firefox";
-        WebDriver driver;
-        driver = utilities.DriverFactory.open(browser);
-
-        String gender;
+        String gender = "Female";
         String weeklyEmail;
+        String monthlyEmail;
         String occasionalEmail;
 
-        // Open browser to navigate to Account Management Page >> Click on Create Account
+        // Define web driver
+        WebDriver driver;
+        driver = utilities.DriverFactory.open(browser);
         driver.get("http://sdettraining.com/trguitransactions/AccountManagement.aspx");
         driver.findElement(By.xpath("//*[@id=\"ctl01\"]/div[3]/div[2]/div/div[2]/a")).click();
 
@@ -29,6 +29,8 @@ public class NewAccount {
         WebElement passwordElement = driver.findElement(By.cssSelector("input[type='password'][id='MainContent_txtPassword']"));
         WebElement verifyPasswordElement = driver.findElement(By.name("ctl00$MainContent$txtVerifyPassword"));
         WebElement countryElement = driver.findElement(By.name("ctl00$MainContent$menuCountry"));
+        WebElement maleGender = driver.findElement(By.name("ctl00$MainContent$Gender"));
+        WebElement femaleGender = driver.findElement(By.id("MainContent_Female"));
 
         // Fill out the form
         nameElement.sendKeys(name);
@@ -38,9 +40,13 @@ public class NewAccount {
         verifyPasswordElement.sendKeys(password);
         new Select(countryElement).selectByVisibleText(country);  // select type of element
 
-        // How to interact with other HTML elements
-        driver.findElement(By.id("MainContent_Female")).click();
-        // driver.findElement(By.cssSelector("input[id='MainContent_Female'][value='Female']")).click();
+        // Radio Button Algorithm
+        if(gender.equalsIgnoreCase("Male")){
+            maleGender.click();
+        }else{
+            femaleGender.click();
+        }
+
 
         driver.findElement(By.name("ctl00$MainContent$checkWeeklyEmail")).click();
         driver.findElement(By.id("MainContent_btnSubmit")).click();
