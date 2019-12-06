@@ -32,6 +32,7 @@ public class NewAccount {
         WebElement maleGender = driver.findElement(By.name("ctl00$MainContent$Gender"));
         WebElement femaleGender = driver.findElement(By.id("MainContent_Female"));
         WebElement weeklyCheckbox = driver.findElement(By.name("ctl00$MainContent$checkWeeklyEmail"));
+        WebElement submitButton = driver.findElement(By.id("MainContent_btnSubmit"));
 
         // Fill out the form
         nameElement.sendKeys(name);
@@ -61,11 +62,17 @@ public class NewAccount {
             }
         }
 
-        driver.findElement(By.id("MainContent_btnSubmit")).click();
+        submitButton.click();
 
         // Get confirmation and Close browser
         String conf = driver.findElement(By.id("MainContent_lblTransactionResult")).getText();
-        System.out.println("CONFIRMATION: " + conf);
+        String expected = "Customer information added successfully";
+        if(conf.equals(expected)){
+            System.out.println("CONFIRMATION: " + conf);
+        }else{
+            System.out.println("TEST FAILED");
+        }
+
         driver.close();
 
     }
