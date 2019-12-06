@@ -18,6 +18,10 @@ public class NewAccount {
         String weeklyEmail;
         String occasionalEmail;
 
+        // Open browser to navigate to Account Management Page >> Click on Create Account
+        driver.get("http://sdettraining.com/trguitransactions/AccountManagement.aspx");
+        driver.findElement(By.xpath("//*[@id=\"ctl01\"]/div[3]/div[2]/div/div[2]/a")).click();
+
         // Define Web Elements
         WebElement nameElement = driver.findElement(By.name("ctl00$MainContent$txtFirstName"));
         WebElement emailElement = driver.findElement(By.id("MainContent_txtEmail"));
@@ -25,10 +29,6 @@ public class NewAccount {
         WebElement passwordElement = driver.findElement(By.cssSelector("input[type='password'][id='MainContent_txtPassword']"));
         WebElement verifyPasswordElement = driver.findElement(By.name("ctl00$MainContent$txtVerifyPassword"));
         WebElement countryElement = driver.findElement(By.name("ctl00$MainContent$menuCountry"));
-
-        // Open browser to navigate to Account Management Page >> Click on Create Account
-        driver.get("http://sdettraining.com/trguitransactions/AccountManagement.aspx");
-        driver.findElement(By.xpath("//*[@id=\"ctl01\"]/div[3]/div[2]/div/div[2]/a")).click();
 
         // Fill out the form
         nameElement.sendKeys(name);
