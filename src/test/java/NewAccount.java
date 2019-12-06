@@ -12,9 +12,9 @@ public class NewAccount {
         String country = "Germany";
         String browser = "firefox";
         String gender = "Female";
-        String weeklyEmail;
-        String monthlyEmail;
-        String occasionalEmail;
+        boolean weeklyEmail = true;
+        boolean monthlyEmail = false;
+        boolean occasionalEmail = false;
 
         // Define web driver
         WebDriver driver;
@@ -31,6 +31,7 @@ public class NewAccount {
         WebElement countryElement = driver.findElement(By.name("ctl00$MainContent$menuCountry"));
         WebElement maleGender = driver.findElement(By.name("ctl00$MainContent$Gender"));
         WebElement femaleGender = driver.findElement(By.id("MainContent_Female"));
+        WebElement weeklyCheckbox = driver.findElement(By.name("ctl00$MainContent$checkWeeklyEmail"));
 
         // Fill out the form
         nameElement.sendKeys(name);
@@ -38,7 +39,9 @@ public class NewAccount {
         phoneElement.sendKeys(phoneNumber);
         passwordElement.sendKeys(password);
         verifyPasswordElement.sendKeys(password);
-        new Select(countryElement).selectByVisibleText(country);  // select type of element
+
+        // Select
+        new Select(countryElement).selectByVisibleText(country);
 
         // Radio Button Algorithm
         if(gender.equalsIgnoreCase("Male")){
@@ -47,8 +50,17 @@ public class NewAccount {
             femaleGender.click();
         }
 
+        // Check Box Algorithm
+        if(weeklyEmail){
+            if(!weeklyCheckbox.isSelected()){
+                weeklyCheckbox.click();
+            }
+        }else{
+            if(weeklyCheckbox.isSelected()){
+                weeklyCheckbox.click();
+            }
+        }
 
-        driver.findElement(By.name("ctl00$MainContent$checkWeeklyEmail")).click();
         driver.findElement(By.id("MainContent_btnSubmit")).click();
 
         // Get confirmation and Close browser
