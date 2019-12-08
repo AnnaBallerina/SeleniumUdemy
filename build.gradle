@@ -17,3 +17,7 @@ dependencies {
     compile group: 'org.seleniumhq.selenium', name: 'selenium-java', version: '3.+'
     testCompile 'org.testng:testng:6.10'
 }
+
+test{
+    useTestNG()
+}
