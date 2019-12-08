@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="SDET University Test Suites">
+    <test verbose="2" preserve-order="true" name="Home Page Tests">
+        <classes>
+            <class name="smoketests.ATagsTest"></class>
+            <class name="smoketests.LoginPresentTestNG"></class>
+        </classes>
+    </test>
+</suite>
