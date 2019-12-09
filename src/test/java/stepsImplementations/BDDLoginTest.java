@@ -1,5 +1,6 @@
 package stepsImplementations;
 
+import cucumber.api.java.After;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
@@ -26,21 +27,32 @@ public class BDDLoginTest {
         driver.findElement(By.name("ctl00$MainContent$btnLogin")).click();
     }
 
-    @When("user enters correct email (.*)")
-    public void user_enters_correct_username(String username){
+    @When("^user enters email (.*)$")
+    public void user_enters_email(String username){
         System.out.println("TESTING " + username);
         driver.findElement(By.name("ctl00$MainContent$txtUserName")).sendKeys(username);
     }
 
-    @And("user enters correct password (.*)")
-    public void user_enters_correct_password(String password){
+    @And("^user enters password (.*)$")
+    public void user_enters_password(String password){
         driver.findElement(By.name("ctl00$MainContent$txtPassword")).sendKeys(password);
+        click_login();
+    }
+
+    //@And("user clicks login button ")
+    public void click_login(){
+        driver.findElement(By.name("ctl00$MainContent$btnLogin")).click();
     }
 
     @Then("^user gets confirmation$")
     public void user_gets_confirmation(){
         System.out.println("User gets confirmation");
         Assert.assertTrue(driver.findElement(By.id("conf_message")).getText().contains("success"));
+    }
+
+    @After
+    public void tearDown(){
+        driver.quit();
     }
 
 }
