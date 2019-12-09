@@ -10,8 +10,8 @@ Feature: Test the login functionality on sdet university
 
   Scenario Outline: the user should be able to login with correct username and correct password
     Given user is on the login page
-    When user enters correct <username>
-    And correct <password>
+    When user enters correct email <username>
+    And correct password <password>
     Then user gets confirmation
 
     Examples:
