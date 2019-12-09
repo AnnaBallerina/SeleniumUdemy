@@ -10,14 +10,14 @@ import org.openqa.selenium.WebDriver;
 public class BDDLoginTest {
     WebDriver driver;
 
-    @Given("user is on the login page")
+    @Given("^user is on the login page$")
     public void user_is_on_the_login_page(){
         System.out.println("User is on the login page");
         driver = utilities.DriverFactory.open("chrome");
         driver.get("http://sdettraining.com/trguitransactions/AccountManagement.aspx");
     }
 
-    @When("user enters correct username and correct password")
+    @When("^user enters correct username and correct password$")
     public void user_enters_correct_username_and_correct_password(){
         System.out.println("User enters correct username and correct password");
         driver.findElement(By.name("ctl00$MainContent$txtUserName")).sendKeys("tim@testemail.com");
@@ -25,9 +25,10 @@ public class BDDLoginTest {
         driver.findElement(By.name("ctl00$MainContent$btnLogin")).click();
     }
 
-    @Then("user gets confirmation")
+    @Then("^user gets confirmation$")
     public void user_gets_confirmation(){
         System.out.println("User gets confirmation");
         Assert.assertTrue(driver.findElement(By.id("conf_message")).getText().contains("success"));
     }
+
 }
